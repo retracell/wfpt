@@ -1,0 +1,2 @@
+git+git://github.com/pabluk/twitter-application-only-auth.git#egg=twitter-application-only-auth
+wsgiref==0.1.2
