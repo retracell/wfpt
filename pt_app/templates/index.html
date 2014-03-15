@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <div class="container">
+          <h1 class="text-center">World Food Price Tracker</h1>
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <p>Hello world</p>
+            {% for price in prices %}
+            <p>{{price.good_name}} has an average price of {{price.mean}}</p>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -8,6 +8,12 @@ with open('twitter.cred') as f:
 
 client = Client(CONSUMER_KEY, CONSUMER_SECRET)
 
-url = "https://api.twitter.com/1.1/search/tweets.json?q=test"
+url = "https://api.twitter.com/1.1/search/tweets.json?"
 
 client.request(url)
+
+# returns a tuple of high, low, mean of price
+def get_price(query):
+    query_url = url + query
+    result =  client.request(query_url)
+    
