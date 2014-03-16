@@ -1,6 +1,7 @@
 *.py[cod]
 *.cred
 *.swp
+.DS_Store
 
 # C extensions
 *.so

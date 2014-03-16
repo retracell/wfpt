@@ -1,14 +1,72 @@
 <html>
   <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <style type="text/css" id="custom-background-css">
+      body { background-color: #0081C3; color: #FFFFFA; }
+      #logo { height: 140px; }
+      #top-row {padding-top: 30px; }
+      .row { padding-top: 20px; }
+    </style>
     <title>{{title}}</title>
   </head>
   <body>
     <div class="container">
-          <h1 class="text-center">World Food Price Tracker</h1>
+      <div class="row" id="top-row">
+        <div class="col-xs-2 col-xs-offset-2">
+          <img id="logo" src="/static/logo.png" alt="Logo">
+        </div>
+        <div class="col-xs-8">
+          <h1>World Food Price Tracker</h1>
+          <p>Track the prices of food around the world via Twitter</p>
+        </div>
+      </div>
+      <div class="row">
+        <form role="form">
+          <div class="col-xs-2 col-xs-offset-2">
+            <div class="form-group">
+              <label for="good">Food</label>
+              <select id="good" class="form-control">
+                <option>Bread</option>
+                <option>Salt</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="form-group">
+              <label for="location">Location</label>
+              <select id="location" class="form-control">
+                <option>Syria</option>
+                <option>Canada</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <label>Range</label>
+            <div>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="rangeRadio" id="range7d" value="7d" checked>
+                  7 days
+                </label>
+              </div>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="rangeRadio" id="range1m" value="1m">
+                  1 month
+                </label>
+              </div>
+              <div class="radio-inline">
+                <label>
+                  <input type="radio" name="rangeRadio" id="range3m" value="3m">
+                  3 months
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-            <p>Hello world</p>
             {% for price in prices %}
             <p>{{price.good_name}} has an average price of {{price.mean}}</p>
             {% endfor %}
