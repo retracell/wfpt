@@ -40,5 +40,9 @@ def get_price(args):
     print mean
     return (high, mean, low)
 
+def translate(phrase):
+    #TODO add bing translation here
+    return phrase
+
 if __name__ == '__main__':
     get_price("bread lira")

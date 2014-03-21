@@ -7,6 +7,7 @@
       #top-row {padding-top: 30px; }
       .row { padding-top: 20px; }
     </style>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <title>{{title}}</title>
   </head>
   <body>
@@ -66,12 +67,35 @@
         </form>
       </div>
       <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            {% for price in prices %}
-            <p>{{price.good_name}} has an average price of {{price.mean}}</p>
-            {% endfor %}
+        <div id=graph class="col-xs-8 col-xs-offset-2">
         </div>
       </div>
-    </div>
+      </div>
+      <script type="text/javascript">
+        var low = [];
+        var mean = [];
+        var high = [];
+        {% for price in prices %}
+          {% if not loop.last %}
+            low.push([{{price.low}}, {{prices[loop.index0+1].low}}]);
+            mean.push([{{price.mean}}, {{prices[loop.index0+1].mean}}]);
+            high.push([{{price.high}}, {{prices[loop.index0+1].high}}]);
+          {% endif %}
+        {% endfor %}
+        var svg = d3.select("#graph").append("svg")
+          .attr("width", 700).attr("height", 500);
+        var lines = svg.selectAll("line")
+        .data(mean).enter().append("line");
+
+        lines.attr("x1", function(d, i) {
+          return i*100;
+        }).attr("y1", function(d) {
+          return 200-d[0]*5;
+        }).attr("x2", function(d, i) {
+          return 100 + i*100;
+        }).attr("y2", function(d) {
+          return 200-d[1]*5;
+        }).attr("stroke", "white").attr("stroke-width", "2");
+      </script>
   </body>
 </html>

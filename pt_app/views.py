@@ -5,8 +5,11 @@ from flask import render_template, request
 @app.route('/')
 @app.route('/index')
 def index():
+    prices = Price.query.filter_by(
+        good_name = 'bread',
+        location_name = 'syria').all()
     return render_template("index.html",
-            title = "World food Price Tracker")
+            prices = prices)
 
 @app.route('/price')
 def get_price():
